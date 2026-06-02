@@ -15,6 +15,7 @@
   --gray: #2a2a2a;
   --light-gray: #3a3a3a;
   --border: 3px solid var(--white);
+  --border-no-bottom: 3px 3px 0px 3px solid var(--white);
   --shadow: 6px 6px 0px var(--yellow);
   --shadow-red: 6px 6px 0px var(--red);
   --shadow-black: 6px 6px 0px var(--black);

@@ -8,7 +8,7 @@ function FooterBar({ remaining, completedCount, onClearDone }) {
   return (
     <footer className="footer-bar">
       <span className="footer-bar__count">
-        {remaining} student{remaining !== 1 ? 's' : ''} still enrolled
+        {remaining} student{remaining !== 1 ? 's' : ''} enrolled
       </span>
 
       {completedCount > 0 && (

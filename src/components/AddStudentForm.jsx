@@ -16,27 +16,29 @@ export default function AddStudentForm({ onAdd }) {
 
   return (
     <form className="add-student-form" onSubmit={handleSubmit} noValidate>
-      <input
-        className="add-student-form__input"
-        type="text"
-        value={studentName}
-        onChange={(e) => setStudentName(e.target.value)}
-        placeholder="enter a student"
-        aria-label="New student"
-        maxLength={200}
-        autoComplete="off"
-        autoFocus
-      />
-      <input
-        className="add-student-form__input"
-        type="text"
-        value={studentCourse}
-        onChange={(e) => setStudentCourse(e.target.value)}
-        placeholder="enter a course"
-        aria-label="Enter course"
-        maxLength={200}
-        autoComplete="off"
-      />
+      <div className="add-student-form__input_div">
+        <input
+          className="add-student-form__input_name"
+          type="text"
+          value={studentName}
+          onChange={(e) => setStudentName(e.target.value)}
+          placeholder="enter a student"
+          aria-label="New student"
+          maxLength={200}
+          autoComplete="off"
+          autoFocus
+        />
+        <input
+          className="add-student-form__input_course"
+          type="text"
+          value={studentCourse}
+          onChange={(e) => setStudentCourse(e.target.value)}
+          placeholder="enter a course"
+          aria-label="Enter course"
+          maxLength={200}
+          autoComplete="off"
+        />
+      </div>
       <button
         className="add-student-form__btn"
         type="submit"
