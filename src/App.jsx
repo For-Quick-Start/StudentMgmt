@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import { createRoot } from 'react-dom/client'
+
 import './App.css';
 
 import Header      from './components/Header';
-import AddTaskForm from './components/AddTaskForm';
+import AddStudentForm from './components/AddStudentForm';
 import FilterBar   from './components/FilterBar';
-import TaskList    from './components/TaskList';
+import StudentList    from './components/StudentList';
 import FooterBar   from './components/FooterBar';
 
 function makeId() {
@@ -14,9 +15,9 @@ function makeId() {
     : `${Date.now()}-${Math.random().toString(36).slice(2)}`;
 }
 
-function loadTasks() {
+function loadStudents() {
   try {
-    const raw = localStorage.getItem('todo-tasks');
+    const raw = localStorage.getItem('studentsJSON');
     return raw ? JSON.parse(raw) : [];
   } catch {
     return [];
@@ -24,60 +25,61 @@ function loadTasks() {
 }
 
 export default function App() {
-  const [tasks, setTasks]   = useState(loadTasks);
+  const [students, setStudents] = useState(loadStudents);
   const [filter, setFilter] = useState('all');
 
   useEffect(() => {
-    localStorage.setItem('todo-tasks', JSON.stringify(tasks));
-  }, [tasks]);
+    localStorage.setItem('studentsJSON', JSON.stringify(students));
+  }, [students]);
 
   const counts = {
-    all:    tasks.length,
-    active: tasks.filter(t => !t.completed).length,
-    done:   tasks.filter(t =>  t.completed).length,
+    all:    students.length,
+    active: students.filter(t => !t.completed).length,
+    done:   students.filter(t =>  t.completed).length,
   };
 
   const remaining = counts.active;
 
-  const filteredTasks = tasks.filter(task => {
-    if (filter === 'active') return !task.completed;
-    if (filter === 'done')   return  task.completed;
-    return true;                   // 'all'
+  const filteredStudents = students.filter(student => {
+    if (filter === 'active') return !student.completed;
+    if (filter === 'done')   return  student.completed;
+    return true;
   });
 
-  function addTask(text) {
-    const newTask = {
+  function addStudent(name, course) {
+    const newStudent = {
       id: makeId(),
-      text,
-      completed: false,
+      name: name,
+      course: course,
       createdAt: Date.now(),
+      completed: false,
     };
-    setTasks(prev => [newTask, ...prev]);
+    setStudents(prev => [newStudent, ...prev]);
   }
 
-  function toggleTask(id) {
-    setTasks(prev =>
+  function toggleStudent(id) {
+    setStudents(prev =>
       prev.map(t => t.id === id ? { ...t, completed: !t.completed } : t)
     );
   }
 
-  function deleteTask(id) {
-    setTasks(prev => prev.filter(t => t.id !== id));
+  function deleteStudent(id) {
+    setStudents(prev => prev.filter(t => t.id !== id));
   }
 
   function clearDone() {
-    setTasks(prev => prev.filter(t => !t.completed));
+    setStudents(prev => prev.filter(t => !t.completed));
   }
 
   return (
     <div className="app">
-      <Header total={tasks.length} remaining={remaining} />
+      <Header total={students.length} remaining={remaining} />
 
       <div className="divider" />
 
-      <AddTaskForm onAdd={addTask} />
+      <AddStudentForm onAdd={addStudent} />
 
-      {tasks.length > 0 && (
+      {students.length > 0 && (
         <FilterBar
           current={filter}
           onChange={setFilter}
@@ -85,14 +87,14 @@ export default function App() {
         />
       )}
 
-      <TaskList
-        tasks={filteredTasks}
+      <StudentList
+        students={filteredStudents}
         filter={filter}
-        onToggle={toggleTask}
-        onDelete={deleteTask}
+        onToggle={toggleStudent}
+        onDelete={deleteStudent}
       />
 
-      {tasks.length > 0 && (
+      {students.length > 0 && (
         <FooterBar
           remaining={remaining}
           completedCount={counts.done}

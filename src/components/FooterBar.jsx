@@ -1,6 +1,6 @@
 function FooterBar({ remaining, completedCount, onClearDone }) {
   function handleClear() {
-    if (window.confirm(`Remove ${completedCount} completed task${completedCount !== 1 ? 's' : ''}?`)) {
+    if (window.confirm(`Remove ${completedCount} completed student${completedCount !== 1 ? 's' : ''}?`)) {
       onClearDone();
     }
   }
@@ -8,12 +8,12 @@ function FooterBar({ remaining, completedCount, onClearDone }) {
   return (
     <footer className="footer-bar">
       <span className="footer-bar__count">
-        {remaining} task{remaining !== 1 ? 's' : ''} left
+        {remaining} student{remaining !== 1 ? 's' : ''} still enrolled
       </span>
 
       {completedCount > 0 && (
         <button className="footer-bar__clear" onClick={handleClear}>
-          Clear completed [{completedCount}]
+          Clear graduated [{completedCount}]
         </button>
       )}
     </footer>

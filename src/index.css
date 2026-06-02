@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mea+Culpa&family=Pinyon+Script&display=swap');
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -11,13 +11,14 @@
   --white: #f5f0e8;
   --yellow: #f5d90a;
   --red: #e8271e;
-  --green: #1db954;
+  --green: #81c599;
   --gray: #2a2a2a;
   --light-gray: #3a3a3a;
   --border: 3px solid var(--white);
   --shadow: 6px 6px 0px var(--yellow);
   --shadow-red: 6px 6px 0px var(--red);
-  --font-display: 'Bebas Neue', sans-serif;
+  --shadow-black: 6px 6px 0px var(--black);
+  --font-display: 'Mea Culpa', sans-serif;
   --font-body: 'Space Mono', monospace;
 }
 
@@ -26,24 +27,9 @@ html, body {
 }
 
 body {
-  background-color: var(--black);
+  background-color: var(--gray);
   color: var(--white);
   font-family: var(--font-body);
-  background-image:
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 39px,
-      rgba(245, 217, 10, 0.04) 39px,
-      rgba(245, 217, 10, 0.04) 40px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 39px,
-      rgba(245, 217, 10, 0.04) 39px,
-      rgba(245, 217, 10, 0.04) 40px
-    );
   min-height: 100vh;
   overflow-x: hidden;
 }

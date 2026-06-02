@@ -1,12 +1,12 @@
 const FILTERS = [
   { id: 'all',    label: 'All'       },
-  { id: 'active', label: 'Active'    },
-  { id: 'done',   label: 'Completed' },
+  { id: 'active', label: 'Enrolled'    },
+  { id: 'done',   label: 'Graduated' },
 ];
 
 function FilterBar({ current, onChange, counts }) {
   return (
-    <nav className="filter-bar" aria-label="Task filters">
+    <nav className="filter-bar" aria-label="Student filters">
       {FILTERS.map(({ id, label }) => (
         <button
           key={id}
